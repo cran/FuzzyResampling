@@ -42,7 +42,7 @@
 #'
 #' @family resampling functions
 #'
-#' @seealso @seealso \code{\link{classicalBootstrap}},
+#' @seealso \code{\link{classicalBootstrap}},
 #' \code{\link{EWmethod}} for the EW method, \code{\link{VAFmethod}} for the VAF method,
 #' \code{\link{VAAmethod}} for the VAA method, \code{\link{dmethod}} for the d method, \code{\link{wmethod}} for the w method
 #'
@@ -56,6 +56,8 @@
 #' ncol = 4,byrow = TRUE)
 #'
 #' # generate the secondary sample using the VAF method
+#'
+#' set.seed(12345)
 #'
 #' VAFmethod(fuzzyValues)
 #'
