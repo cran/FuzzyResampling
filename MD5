@@ -1,13 +1,13 @@
-75afa513e8c0214bbbe47cb9914be1f3 *DESCRIPTION
+409b09523da402e220e60506cab7b1e1 *DESCRIPTION
 076dcb368cc5e3f053f8fd5262dd31f3 *NAMESPACE
-16ce21bc046b25099d72e6f7eeb0f1cb *NEWS.md
+6c8f9bec116e319561dc7523baff3dcd *NEWS.md
 3bc7d4dce894fe8140a2aa90c60508a1 *R/BertoluzzaDistance.R
 670cc19025a5f52a08ac517f724a306c *R/EWmethod.R
 07127f7f1028d78990a8feb5abf3564a *R/FuzzyResampling-package.R
 493369e17b9dd8605873b48fc55e90b3 *R/GeneratorNExpUU.R
 eb111795398d63f196908a3b0d357f39 *R/GeneratorNU.R
 07eb77ce36477763c0770ebffc9a7993 *R/OneSampleCTest.R
-253d72f1c6f9b121d8b9f3b54b3b5b0c *R/SEResamplingMean.R
+a6ba25e80906308a49c49b08abca1df2 *R/SEResamplingMean.R
 22ad9d28439fe48a08bbc21c30d552ed *R/VAAmethod.R
 f841f0ebd3db1e5e4ef487da9d6f5eaf *R/VAFmethod.R
 719d9cf91ba9f6a1cacffdcb4c2cf9ad *R/VAmethod.R
@@ -15,7 +15,7 @@ dc77f5d1c7b3c1891283e810e4e61706 *R/classicalBoostrap.R
 c4fe67dac99584b30cb130fb715cc979 *R/dmethod.R
 83bac22d468d07855b618be271afcddf *R/utils.R
 ed457b47daca7d0827ab94f3e48b3e18 *R/wmethod.R
-03048f2988abe6d36bd6a6cfb5064c05 *README.md
+ffe0fd829d17a0a710f052a1a3ed7e2b *README.md
 585e46f489d5a2c807f0fcbf3b2ed2bd *man/BertoluzzaDistance.Rd
 2a5d9dfd748201879a9022934609b632 *man/EWmethod.Rd
 7f224f438dbf5b04ef94955239201737 *man/FuzzyResampling-package.Rd
