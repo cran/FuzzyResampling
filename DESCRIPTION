@@ -1,7 +1,7 @@
 Package: FuzzyResampling
 Type: Package
 Title: Resampling Methods for Triangular and Trapezoidal Fuzzy Numbers
-Version: 0.3.1
+Version: 0.4.0
 Authors@R: c(
     person("Maciej", "Romaniuk", email = "mroman@ibspan.waw.pl", role = "cre"),
     person("Przemyslaw", "Grzegorzewski", email = "przemyslaw.grzegorzewski@ibspan.waw.pl", role = "aut"),
@@ -21,9 +21,9 @@ License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.1.2
 NeedsCompilation: no
-Packaged: 2021-12-14 08:26:33 UTC; mroman
+Packaged: 2022-01-05 05:58:08 UTC; mroman
 Author: Maciej Romaniuk [cre],
   Przemyslaw Grzegorzewski [aut],
   Olgierd Hryniewicz [aut]
 Repository: CRAN
-Date/Publication: 2021-12-14 14:40:02 UTC
+Date/Publication: 2022-01-05 06:20:02 UTC

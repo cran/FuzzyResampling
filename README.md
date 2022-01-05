@@ -79,6 +79,8 @@ The following procedures are available in the library:
 
     -   *OneSampleCTest* - estimation of the p-value of the one-sample
         test for the mean (see (Lubiano et al. 2016)),
+    -   *TwoSampleCTest* - estimation of the p-value of the two-sample
+        test for the mean (see (Lubiano et al. 2016)),
     -   *SEResamplingMean* - estimation of the standard error or the
         mean-squared error for the mean (see (Grzegorzewski and Romaniuk
         2021b)).
@@ -171,6 +173,7 @@ BertoluzzaDistance(fuzzyValues[1,],fuzzyValues[2,])
 set.seed(1234)
 
 # calculate the p-value using the classical (i.e. Efron's) bootstrap
+# for the one-sample test for the mean
 
 OneSampleCTest(fuzzyValues, mu_0 = c(0,0.5,1,1.5))
 #> [1] 0.82
@@ -179,6 +182,22 @@ OneSampleCTest(fuzzyValues, mu_0 = c(0,0.5,1,1.5))
 
 OneSampleCTest(fuzzyValues, mu_0 = c(0,0.5,1,1.5),resamplingMethod = VAmethod)
 #> [1] 0.91
+
+# seed PRNG
+
+set.seed(1234)
+
+# calculate the p-value using the classical (i.e. Efron's) bootstrap
+# for the two-sample test for the mean
+
+TwoSampleCTest(fuzzyValues, fuzzyValues+0.1)
+#> [1] 0.8
+
+# calculate the p-value using the VA resampling method
+
+TwoSampleCTest(fuzzyValues, fuzzyValues+0.1,resamplingMethod = VAmethod)
+#> [1] 1
+
 
 
 # seed PRNG
