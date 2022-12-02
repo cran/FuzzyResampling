@@ -71,7 +71,7 @@
 #'
 #' # calculate the SE of the mean using the VA resampling method
 #'
-#' SEResamplingMean(fuzzyValues, resamplingMethod = VAmethod)
+#' SEResamplingMean(fuzzyValues, resamplingMethod = "VAMethod")
 #'
 #' # calculate the MSE of the given mean using the classical (i.e. Efron's) bootstrap
 #'
@@ -79,7 +79,7 @@
 #'
 #' # calculate the MSE of the given mean using the VA resampling method
 #'
-#' SEResamplingMean(fuzzyValues, resamplingMethod = VAmethod, trueMean = c(0,0.5,1,2))
+#' SEResamplingMean(fuzzyValues, resamplingMethod = "VAMethod", trueMean = c(0,0.5,1,2))
 #'
 
 #'
@@ -94,6 +94,7 @@
 #' Uncertainty and Imprecision in Decision Making and Decision Support: New Advances, Challenges, and Perspectives, pp. 28-47
 #' Springer
 #'
+#'
 #' @export
 #'
 
@@ -103,7 +104,7 @@
 
 # calculate SE/MSE for the mean
 
-SEResamplingMean <- function(initialSample, resamplingMethod=classicalBootstrap, repetitions = 100, trueMean = NA, theta = 1/3,
+SEResamplingMean <- function(initialSample, resamplingMethod="ClassicalBootstrap", repetitions = 100, trueMean = NA, theta = 1/3,
                              increases = FALSE)
 {
 
@@ -116,13 +117,20 @@ SEResamplingMean <- function(initialSample, resamplingMethod=classicalBootstrap,
 
   # check the initial sample
 
-  parameterCheckForInitialSample(initialSample)
+  ParameterCheckForInitialSample(initialSample)
 
   # checking repetitions parameter
 
-  if(!ifInteger(repetitions) | repetitions <= 1)
+  if(!IfInteger(repetitions) | repetitions <= 1)
   {
     stop("Parameter repetitions should be integer value and > 1")
+  }
+
+  # checking trueMean parameter
+
+  if(!(length(trueMean) == 1 && is.na(trueMean)==TRUE))
+  {
+    ParameterMu0Check(mu0 = trueMean,increases)
   }
 
   # checking theta parameter
@@ -134,9 +142,25 @@ SEResamplingMean <- function(initialSample, resamplingMethod=classicalBootstrap,
 
   # checking resamplingMethod parameter
 
-  if(!(deparse(substitute(resamplingMethod)) %in% resamplingMethods))
+  if(!(resamplingMethod %in% resamplingMethods))
   {
     stop("Parameter resamplingMethod should be a proper name of the resampling method")
+  }
+
+  # checking the validity of increases
+
+  if(!is.logical(increases))
+  {
+    stop("Parameter increases should have logical value")
+  }
+
+  # if we have increases, then all initial fuzzy numbers have to be changed
+
+  if(increases)
+  {
+
+    initialSample <- TransformFromIncreases(initialSample)
+
   }
 
 
@@ -150,7 +174,7 @@ SEResamplingMean <- function(initialSample, resamplingMethod=classicalBootstrap,
   {
     # generate secondary sample
 
-    secondarySample <- resamplingMethod(initialSample, b = nrow(initialSample), increases)
+    secondarySample <- get(resamplingMethod)(initialSample, b = nrow(initialSample), increases=FALSE)
 
     # cat("\n secondarySample: \n")
     # print(as.matrix(secondarySample))
@@ -183,6 +207,13 @@ SEResamplingMean <- function(initialSample, resamplingMethod=classicalBootstrap,
 
   } else {
 
+    # transform trueMean if we have increases
+
+    if(increases)
+    {
+      trueMean <- TransformFromIncreases(trueMean)
+    }
+
     # calculate MSE
 
     SEmean <- sum((BertoluzzaDistance(meanMatrix, trueMean, theta))^2)
@@ -207,6 +238,4 @@ SEResamplingMean <- function(initialSample, resamplingMethod=classicalBootstrap,
 
 
 
-resamplingMethods <- c("classicalBootstrap", "VAmethod", "EWmethod",
-                       "VAFmethod", "dmethod", "wmethod")
 

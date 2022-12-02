@@ -1,9 +1,9 @@
-#' V(alue)A(mbiguity) resampling method for triangular and trapezoidal fuzzy numbers
+#' V(alue)A(mbiguity)F(uzziness) resampling method for triangular and trapezoidal fuzzy numbers
 #'
 #' @description
-#' `VAmethod` returns the secondary (bootstrapped) sample and uses the resampling
-#' scheme which does not change the values and ambiguities of the fuzzy variables from
-#'  the initial sample (the VA method, see (Grzegorzewski et al, 2020)).
+#' `VAFMethod` returns the secondary (bootstrapped) sample and uses the resampling
+#' scheme which does not change the values, ambiguities and fuzziness of the fuzzy variables from
+#'  the initial sample (the VAF method, see (Grzegorzewski et al., 2020)).
 #'
 #'
 #' @details
@@ -17,7 +17,7 @@
 #'
 #' The resampling procedure produces \code{b} fuzzy values.
 #' During the first step, the fuzzy value from the initial sample is randomly chosen (with repetition).
-#' Then the new fuzzy variable, which preserves the value and ambiguity of the old one, is randomly created.
+#' Then the new fuzzy variable, which preserves the value,  ambiguity and fuzziness of the old one, is randomly created.
 #' If the parameter \code{b} is not specified, it is equal to the length of the initial sample.
 #' The output is given in the same form as the initial sample.
 #'
@@ -42,9 +42,9 @@
 #'
 #' @family resampling functions
 #'
-#' @seealso @seealso \code{\link{classicalBootstrap}},
-#' \code{\link{EWmethod}} for the EW method, \code{\link{VAFmethod}} for the VAF method,
-#' \code{\link{VAAmethod}} for the VAA method, \code{\link{dmethod}} for the d method, \code{\link{wmethod}} for the w method
+#' @seealso \code{\link{ClassicalBootstrap}},
+#' \code{\link{EWMethod}} for the EW method, \code{\link{VAFMethod}} for the VAF method,
+#' \code{\link{VAAMethod}} for the VAA method, \code{\link{DMethod}} for the d method, \code{\link{WMethod}} for the w method
 #'
 #' @importFrom stats runif
 #'
@@ -55,24 +55,24 @@
 #' fuzzyValues <- matrix(c(0.25,0.5,1,1.25,0.75,1,1.5,2.2,-1,0,0,2),
 #' ncol = 4,byrow = TRUE)
 #'
-#' # generate the secondary sample using the VA method
+#' # generate the secondary sample using the VAF method
 #'
 #' set.seed(12345)
 #'
-#' VAmethod(fuzzyValues)
+#' VAFMethod(fuzzyValues)
 #'
-#' VAmethod(fuzzyValues,b=4)
+#' VAFMethod(fuzzyValues,b=4)
 #'
 #' # prepare some fuzzy numbers (second type of the initial sample)
 #'
 #' fuzzyValuesInc <- matrix(c(0.25,0.5,1,0.25,0.25,1,1.5,0.7,1,0,0,2),
 #' ncol = 4,byrow = TRUE)
 #'
-#' # generate the secondary sample using the VA method
+#' # generate the secondary sample using the VAF method
 #'
-#' VAmethod(fuzzyValuesInc,increases = TRUE)
+#' VAFMethod(fuzzyValuesInc,increases = TRUE)
 #'
-#' VAmethod(fuzzyValuesInc,b=4,increases = TRUE)
+#' VAFMethod(fuzzyValuesInc,b=4,increases = TRUE)
 #'
 #' @references
 #'
@@ -84,13 +84,10 @@
 #'
 
 
+# VAF resampling method
 
-# VA resampling method
-
-VAmethod <- function(initialSample, b = n, increases = FALSE)
+VAFMethod <- function(initialSample, b = n, increases = FALSE)
 {
-
-
   # changing possible vector to matrix
 
   if(is.vector(initialSample))
@@ -98,37 +95,55 @@ VAmethod <- function(initialSample, b = n, increases = FALSE)
     initialSample <- matrix(initialSample,nrow=1)
   }
 
+  ParameterCheckForInitialSample(initialSample)
+
   # setting n
 
   n <- nrow(initialSample)
 
-  # checking parameters
+  # checking b parameter
 
-  parameterCheckForResampling(initialSample,b)
+  if(!IfInteger(b) | b <= 0)
+  {
+    stop("Parameter b should be integer value and > 0")
+  }
+
+  # checking the validity of increases
+
+  if(!is.logical(increases))
+  {
+    stop("Parameter increases should have logical value")
+  }
+
 
   # check form of the initial sample
 
   if(increases)
   {
-    initialSample <- transformFromIncreases(initialSample)
+    initialSample <- TransformFromIncreases(initialSample)
   }
 
   # checking consistency of fuzzy numbers
 
-  if(!all(apply(initialSample, 1, is.Fuzzy)))
+  if(!all(apply(initialSample, 1, IsFuzzy)))
   {
     stop("Some values in  initial sample are not correct fuzzy numbers")
   }
 
-  # calculate value and ambiguity for initial sample
+  # calculate value, ambiguity and fuzziness for initial sample
 
-  initialValues <- calculateValue(initialSample)
+  initialValues <- CalculateValue(initialSample)
 
-  initialAmbiguites <- calculateAmbiguity(initialSample)
+  initialAmbiguites <- CalculateAmbiguity(initialSample)
+
+  initialFuzziness <- CalculateFuzziness(initialSample)
 
   # cat("Calculated values: ", initialValues, "\n")
 
   # cat("Calculated ambiguites: ", initialAmbiguites, "\n")
+
+  # cat("Calculated fuzziness: ", initialFuzziness, "\n")
+
 
 
   # generation of numbers of TPFNs based on intial sample
@@ -137,60 +152,71 @@ VAmethod <- function(initialSample, b = n, increases = FALSE)
 
   # cat("Generated numbers:", numbers, "\n")
 
+  # initialize output
+
+  outputSample <- matrix(0, nrow = b, ncol = 4)
+
 
   # resample
 
-  # choose value and ambiguity
-
-  selectedValue <- initialValues[numbers]
-
-  selectedAmbiguity <- initialAmbiguites[numbers]
-
-  # cat("Selected value: ", selectedValue, "\n")
-
-  # cat("Selected ambiguity: ", selectedAmbiguity, "\n")
-
-  s <- rep(0,b)
-
   for (i in 1:b)
   {
-
     # check if selected fuzzy number is triangular
 
-    if (!is.Triangular(initialSample[numbers[i],]))
+    if (IsTriangular(initialSample[numbers[i],]))
     {
-      # we have TPFN, generate s
+      outputSample[i,] <- initialSample[numbers[i],]
 
-      s[i] <- runif(1,0,selectedAmbiguity[i])
+      # cat("i: ", i, "TRFN\n")
+
+    }
+    else
+    {
+
+      # choose value, width, fuzziness
+
+      selectedValue <- initialValues[numbers[i]]
+
+      selectedAmbiguity <- initialAmbiguites[numbers[i]]
+
+      selectedFuzziness <- initialFuzziness[numbers[i]]
+
+      # cat("Selected value: ", selectedValue, "\n")
+
+      # cat("Selected ambiguity: ", selectedAmbiguity, "\n")
+
+      # cat("Selected fuzziness: ", selectedFuzziness, "\n")
+
+
+      # we have TPFN, generate the output
+
+      s <- selectedAmbiguity - 2/3 * selectedFuzziness
+
+      c <- runif(1,selectedValue-2/3 * selectedFuzziness,selectedValue+2/3 * selectedFuzziness)
+
+      l <- 3*(selectedAmbiguity-selectedValue+c-s)
+
+      r <- 3*(selectedAmbiguity+selectedValue-c-s)
+
+      # cat("s: ", s, "c: ", c, "l: ", l, "r: ", r, "\n")
 
       # cat("i: ", i, "TPFN\n")
+
+      outputSample[i,] <- c(c-l-s,c-s,c+s,c+r+s)
 
     }
 
 
   }
 
-  # cat("Values of s: ", s, "\n")
-
-  # build the output
-
-  c <- runif(b,selectedValue-selectedAmbiguity+s,selectedValue+selectedAmbiguity-s)
-
-  l <- 3*(selectedAmbiguity-selectedValue+c-s)
-
-  r <- 3*(selectedAmbiguity+selectedValue-c-s)
-
-  # cat("s: ", s, "c: ", c, "l: ", l, "r: ", r, "\n")
-
-  outputSample <- matrix(c(c-l-s,c-s,c+s,c+r+s),ncol = 4)
-
   # change form of the output sample
 
   if(increases)
   {
-    outputSample <- transformToIncreases(outputSample)
+    outputSample <- TransformToIncreases(outputSample)
   }
 
   return(outputSample)
+
 
 }

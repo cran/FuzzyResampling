@@ -59,7 +59,7 @@
 #'
 #' # calculate the p-value using the VA resampling method
 #'
-#' OneSampleCTest(fuzzyValues, mu_0 = c(0,0.5,1,1.5),resamplingMethod = VAmethod)
+#' OneSampleCTest(fuzzyValues, mu_0 = c(0,0.5,1,1.5),resamplingMethod = "VAMethod")
 #'
 
 #'
@@ -78,8 +78,10 @@
 # C bootstrapped test for one mean
 
 OneSampleCTest <- function(initialSample, mu_0,
-                           numberOfSamples = 100, theta = 1/3, resamplingMethod = classicalBootstrap, increases = FALSE)
+                           numberOfSamples = 100, theta = 1/3, resamplingMethod = "ClassicalBootstrap", increases = FALSE)
 {
+
+  # print(as.list(match.call()))
 
   # changing possible vector to matrix
 
@@ -90,11 +92,15 @@ OneSampleCTest <- function(initialSample, mu_0,
 
   # check the initial sample
 
-  parameterCheckForInitialSample(initialSample)
+  ParameterCheckForInitialSample(initialSample)
+
+  # checking parameter mu_0 for validity
+
+  ParameterMu0Check(mu0 = mu_0, increases)
 
   # checking numberOfSamples parameter
 
-  if(!ifInteger(numberOfSamples) | numberOfSamples <= 1)
+  if(!IfInteger(numberOfSamples) | numberOfSamples <= 1)
   {
     stop("Parameter numberOfSamples should be integer value and > 1")
   }
@@ -108,17 +114,35 @@ OneSampleCTest <- function(initialSample, mu_0,
 
   # checking resamplingMethod parameter
 
-  if(!(deparse(substitute(resamplingMethod)) %in% resamplingMethods))
+  if (!(resamplingMethod %in% resamplingMethods))
   {
     stop("Parameter resamplingMethod should be a proper name of the resampling method")
   }
+
+  # checking the validity of increases
+
+  if(!is.logical(increases))
+  {
+    stop("Parameter increases should have logical value")
+  }
+
+  # if we have increases, then all initial fuzzy numbers have to be changed
+
+  if(increases)
+  {
+    mu_0 <- TransformFromIncreases(mu_0)
+
+    initialSample <- TransformFromIncreases(initialSample)
+
+  }
+
 
 
   # calculation of C test without bootstrap (step 1)
 
   n <- nrow(initialSample)
 
-  standardStatistics <- valueA(initialSample, mu_0, theta) / valueB(initialSample, theta)
+  standardStatistics <- ValueA(initialSample, mu_0, theta) / ValueB(initialSample, theta)
 
   # prepare vector
 
@@ -130,12 +154,12 @@ OneSampleCTest <- function(initialSample, mu_0,
 
     # generate bootstrap sample (step 3)
 
-    bootstrapSample <- resamplingMethod(initialSample, n,  increases)
+    bootstrapSample <- get(resamplingMethod)(initialSample, n,  increases=FALSE)
 
     # calculate bootstrapped statistics (step 4)
 
-    bootstrappedStatistics[i] <- valueA(bootstrapSample, initialSample, theta) /
-      valueB(bootstrapSample, theta)
+    bootstrappedStatistics[i] <- ValueA(bootstrapSample, initialSample, theta) /
+      ValueB(bootstrapSample, theta)
 
     # setTxtProgressBar(pb, i)
 
