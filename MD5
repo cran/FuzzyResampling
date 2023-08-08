@@ -1,4 +1,4 @@
-27b15b1efdd8a66bae58077e5e51ba48 *DESCRIPTION
+8f7850cfef1e790c2f44813f5523f4e9 *DESCRIPTION
 de720a3a3c83c8ea6edd47dae2d1c215 *NAMESPACE
 fd3c6df80076b48769cf143e60b09a36 *NEWS.md
 403edb2e50a02533603d8fe7247284a8 *R/BertoluzzaDistance.R
@@ -30,7 +30,8 @@ b21113c06e8ba4cf951c5474ba2b1621 *R/VAMethod.R
 7f4750ab297772fed4a7f81e6bf38a07 *R/samplingGenerators.R
 0c306829d1d6f5f0bfa980bb9036348e *R/utils.R
 cf3877577899c6b3d7e52090667df4a5 *README.md
-cb4924f3573383fca290a0a8e2ca5294 *build/partial.rdb
+2836b2c5db38c9819380bd093383d89d *build/partial.rdb
+644535c0c3687f23f0dce6eb3d819b36 *inst/CITATION
 585e46f489d5a2c807f0fcbf3b2ed2bd *man/BertoluzzaDistance.Rd
 78f324cc0f00dbeca9aa7a3e5c02fdd4 *man/CalculateAmbiguity.Rd
 970aaa54c02c0d6167c50e7b28aac600 *man/CalculateAmbiguityL.Rd
