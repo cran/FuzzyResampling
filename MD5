@@ -1,6 +1,6 @@
-8f7850cfef1e790c2f44813f5523f4e9 *DESCRIPTION
+a430d86ed8b57bca95a71fea9b098ed2 *DESCRIPTION
 de720a3a3c83c8ea6edd47dae2d1c215 *NAMESPACE
-fd3c6df80076b48769cf143e60b09a36 *NEWS.md
+e8faa5d8cf13a175d8eac96c4cb2826c *NEWS.md
 403edb2e50a02533603d8fe7247284a8 *R/BertoluzzaDistance.R
 fd12d17997fb18cd334fce6657520281 *R/CalculateAmbiguity.R
 c2fd6bb9cc843aac0927a4a1426712fa *R/CalculateAmbiguityL.R
@@ -31,7 +31,7 @@ b21113c06e8ba4cf951c5474ba2b1621 *R/VAMethod.R
 0c306829d1d6f5f0bfa980bb9036348e *R/utils.R
 cf3877577899c6b3d7e52090667df4a5 *README.md
 2836b2c5db38c9819380bd093383d89d *build/partial.rdb
-644535c0c3687f23f0dce6eb3d819b36 *inst/CITATION
+1fb6c59f94471beddd6f9b26aba0260c *inst/CITATION
 585e46f489d5a2c807f0fcbf3b2ed2bd *man/BertoluzzaDistance.Rd
 78f324cc0f00dbeca9aa7a3e5c02fdd4 *man/CalculateAmbiguity.Rd
 970aaa54c02c0d6167c50e7b28aac600 *man/CalculateAmbiguityL.Rd
