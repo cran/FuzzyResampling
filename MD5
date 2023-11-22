@@ -1,4 +1,4 @@
-a430d86ed8b57bca95a71fea9b098ed2 *DESCRIPTION
+0d838ba0cbcfe0c79f71b6260926f642 *DESCRIPTION
 de720a3a3c83c8ea6edd47dae2d1c215 *NAMESPACE
 e8faa5d8cf13a175d8eac96c4cb2826c *NEWS.md
 403edb2e50a02533603d8fe7247284a8 *R/BertoluzzaDistance.R
@@ -16,9 +16,9 @@ d6dd9e122def107ed6aa982374aba2c1 *R/ComparisonSEMean.R
 111045a181f4ddf8f342f2d402c879fa *R/DMethod.R
 9eaa5cbfdc4303cafaf9a9ffaea03adf *R/EWMethod.R
 6659f5e4781bb53e24d95820df40cb33 *R/FuzzyResampling-package.R
-25c93706a06b815947c8697af50c1167 *R/GeneratorFuzzyNumbers.R
-4475523c6fed6779fce1dcea9668c2e7 *R/GeneratorNExpUU.R
-8eddd270471f07b15b73959d475eed91 *R/GeneratorNU.R
+cdb86c982d5b6c59edc3ae90cceca975 *R/GeneratorFuzzyNumbers.R
+97ff0f3536375259d2448565b60b4f43 *R/GeneratorNExpUU.R
+c2841427fca171ab1603edb4ef9b9974 *R/GeneratorNU.R
 3d0ef7bd2bf0b1b860183cfdb2342776 *R/OneSampleCTest.R
 5d65fe37a7e67a83c0ac9ad5bf7eb038 *R/SEResamplingMean.R
 ad1f3032361d706e712552f2a069b093 *R/TwoSampleCTest.R
@@ -29,8 +29,8 @@ b21113c06e8ba4cf951c5474ba2b1621 *R/VAMethod.R
 709d9ec95f0a3f245c93d4536190b561 *R/resamplingMethods.R
 7f4750ab297772fed4a7f81e6bf38a07 *R/samplingGenerators.R
 0c306829d1d6f5f0bfa980bb9036348e *R/utils.R
-cf3877577899c6b3d7e52090667df4a5 *README.md
-2836b2c5db38c9819380bd093383d89d *build/partial.rdb
+d38d79288a12eb57226c14258f5b79ba *README.md
+b943a1546a1e17be4eea235ec7b4616b *build/partial.rdb
 1fb6c59f94471beddd6f9b26aba0260c *inst/CITATION
 585e46f489d5a2c807f0fcbf3b2ed2bd *man/BertoluzzaDistance.Rd
 78f324cc0f00dbeca9aa7a3e5c02fdd4 *man/CalculateAmbiguity.Rd
@@ -90,9 +90,9 @@ d8c929311b7c0bd4d525f3aea52bb4ef *tests/testthat/test-ComparePowerOneSampleCTest
 d2c20da7ec16ba2cc9b81b4454809c2b *tests/testthat/test-ComparisonSEMean.R
 e90a68e94992a212a2ed62aac006cfad *tests/testthat/test-DMethod.R
 64eb67435f9b031cb9b7e1dcb314daca *tests/testthat/test-EWMethod.R
-d3e9267763d9eb7f53f03bec5a951ebc *tests/testthat/test-GeneratorFuzzyNumbers.R
-d1e2c2ea8416b832736f607e2506a0d3 *tests/testthat/test-GeneratorNExpUU.R
-37e09f304fe46080d74239b22b20d2ec *tests/testthat/test-GeneratorNU.R
+881670540562139eff35398ee80dd69e *tests/testthat/test-GeneratorFuzzyNumbers.R
+dea289265872af48337d352808261279 *tests/testthat/test-GeneratorNExpUU.R
+622efda46e18eb7b7f5dc6e6f1e69590 *tests/testthat/test-GeneratorNU.R
 131d380aee037897b37589c72fde21c7 *tests/testthat/test-OneSampleCTest.R
 cfeb61f49071912f1aaeef5d871cbbd0 *tests/testthat/test-SEResamplingMean.R
 a02b71805808624fd92c302d12773106 *tests/testthat/test-TwoSampleCTest.R
