@@ -1,7 +1,7 @@
 Package: FuzzyResampling
 Type: Package
 Title: Resampling Methods for Triangular and Trapezoidal Fuzzy Numbers
-Version: 0.6.3
+Version: 0.6.4
 Authors@R: c(
     person("Maciej", "Romaniuk", email = "mroman@ibspan.waw.pl", role = c("aut","cre")),
     person("Przemyslaw", "Grzegorzewski", email = "przemyslaw.grzegorzewski@ibspan.waw.pl", role = "aut"),
@@ -19,13 +19,14 @@ URL: https://github.com/mroman-ibs/FuzzyResampling
 BugReports: https://github.com/mroman-ibs/FuzzyResampling/issues
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.2.3
-Suggests: testthat (>= 3.0.0)
+RoxygenNote: 7.3.2
+Suggests: testthat (>= 3.0.0), R.rsp
 Config/testthat/edition: 3
+VignetteBuilder: R.rsp
 NeedsCompilation: no
-Packaged: 2023-11-22 10:41:49 UTC; mroman
+Packaged: 2024-10-04 09:25:48 UTC; mroman
 Author: Maciej Romaniuk [aut, cre],
   Przemyslaw Grzegorzewski [aut],
   Olgierd Hryniewicz [aut]
 Repository: CRAN
-Date/Publication: 2023-11-22 11:20:02 UTC
+Date/Publication: 2024-10-04 10:00:02 UTC

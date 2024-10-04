@@ -1,4 +1,4 @@
-0d838ba0cbcfe0c79f71b6260926f642 *DESCRIPTION
+0f7595a0c06ef5051e37913700b5d96e *DESCRIPTION
 de720a3a3c83c8ea6edd47dae2d1c215 *NAMESPACE
 e8faa5d8cf13a175d8eac96c4cb2826c *NEWS.md
 403edb2e50a02533603d8fe7247284a8 *R/BertoluzzaDistance.R
@@ -30,16 +30,19 @@ b21113c06e8ba4cf951c5474ba2b1621 *R/VAMethod.R
 7f4750ab297772fed4a7f81e6bf38a07 *R/samplingGenerators.R
 0c306829d1d6f5f0bfa980bb9036348e *R/utils.R
 d38d79288a12eb57226c14258f5b79ba *README.md
-b943a1546a1e17be4eea235ec7b4616b *build/partial.rdb
+b54db8794555342c4feee5fe0b1b8f5b *build/partial.rdb
+9ab7a69cd61eb5d9718df294598046ba *build/vignette.rds
 1fb6c59f94471beddd6f9b26aba0260c *inst/CITATION
+09fcd8005be946e03a40224a2412083a *inst/doc/RJ-2023-036.pdf
+0ffbdf0ba352c6d4a7d8a41493233212 *inst/doc/RJ-2023-036.pdf.asis
 585e46f489d5a2c807f0fcbf3b2ed2bd *man/BertoluzzaDistance.Rd
 78f324cc0f00dbeca9aa7a3e5c02fdd4 *man/CalculateAmbiguity.Rd
-970aaa54c02c0d6167c50e7b28aac600 *man/CalculateAmbiguityL.Rd
-c19901ac84ee3bc07f5f9b4ba902cb12 *man/CalculateAmbiguityR.Rd
-2e66a208d969c8893f4cda88b03ee66d *man/CalculateExpValue.Rd
-48a9c49635022234b9e65599e1375db8 *man/CalculateFuzziness.Rd
-549fd38641c01ccee8a8719012d1187e *man/CalculateValue.Rd
-06da78737f4d5d730ddb3b21cdde95c3 *man/CalculateWidth.Rd
+61a462b42171c6c519b074f6dbf48fc4 *man/CalculateAmbiguityL.Rd
+24fcbdf09b57bcad4c4e3f05ddada837 *man/CalculateAmbiguityR.Rd
+b099874fdc2fb3eff0a8539cc3278aa7 *man/CalculateExpValue.Rd
+48996988461407098de918024adc23ed *man/CalculateFuzziness.Rd
+a755bd680f87ed4e9a4debe6ac70f2c8 *man/CalculateValue.Rd
+3f34b70b86340d9ca2bdc5f98bf2e17a *man/CalculateWidth.Rd
 5f08c4ff88512102f3cb26272ce1f327 *man/ClassicalBootstrap.Rd
 1de96797d826a142c47e74242c694c9e *man/ComparePowerOneSampleCTest.Rd
 75995b172f246f6062713002b1024c0c *man/ComparisonOneSampleCTest.Rd
@@ -100,3 +103,4 @@ a02b71805808624fd92c302d12773106 *tests/testthat/test-TwoSampleCTest.R
 9dd2115066dbfa18bda0f8f5758c61f9 *tests/testthat/test-VAFMethod.R
 d8b977bc165403525868d9229abdf436 *tests/testthat/test-VAMethod.R
 0de0be9bf751dfdfff7903eee534e73e *tests/testthat/test-WMethod.R
+0ffbdf0ba352c6d4a7d8a41493233212 *vignettes/RJ-2023-036.pdf.asis
